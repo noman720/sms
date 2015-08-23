@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+      
+    <bean id="generalDAOSpringJdbc" class="main.java.com.csbl.sms.dao.impl.GeneralDAOSpringJdbcImpl">
+    	<property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean id="idGenerator" class="main.java.com.csbl.sms.util.IdGeneratorImpl">
+        <property name="generalDAOSpringJdbc" ref="generalDAOSpringJdbc"/>
+    </bean>
+    
+    <bean id="databaseUtil" class="main.java.com.csbl.sms.util.DatabaseUtilImpl">
+        <property name="driverManagerDataSource" ref="dataSource" />
+        <property name="host" value="${jdbc.host}" />
+        <property name="port" value="${jdbc.port}" />
+        <property name="database" value="${jdbc.database}" />
+    </bean>
+    
+    <bean id="userManager" class="main.java.com.csbl.sms.manager.impl.UserManagerImpl">
+        <property name="generalDAOSpringJdbc" ref="generalDAOSpringJdbc"/>
+        <property name="idGenerator" ref="idGenerator"/>
+    </bean>
+    
+    <bean id="excelSheetManager" class="main.java.com.csbl.sms.manager.impl.ExcelSheetManagerImpl"/> 
+    
+    <bean id="classManager" class="main.java.com.csbl.sms.manager.impl.ClassManagerImpl">
+    	<property name="generalDAOSpringJdbc" ref="generalDAOSpringJdbc"/>
+        <property name="idGenerator" ref="idGenerator"/>
+    </bean>
+     
+    <bean id="examManager" class="main.java.com.csbl.sms.manager.impl.ExamManagerImpl">
+    	<property name="generalDAOSpringJdbc" ref="generalDAOSpringJdbc"/>
+        <property name="idGenerator" ref="idGenerator"/>
+    </bean>
+
+    <bean id="subjectManager" class="main.java.com.csbl.sms.manager.impl.SubjectManagerImpl">
+    	<property name="generalDAOSpringJdbc" ref="generalDAOSpringJdbc"/>
+        <property name="idGenerator" ref="idGenerator"/>
+    </bean>
+    
+    <bean id="studentManager" class="main.java.com.csbl.sms.manager.impl.StudentManagerImpl">
+    	<property name="generalDAOSpringJdbc" ref="generalDAOSpringJdbc"/>
+        <property name="idGenerator" ref="idGenerator"/>
+    </bean>
+    
+    <bean id="employeeManager" class="main.java.com.csbl.sms.manager.impl.EmployeeManagerImpl">
+    	<property name="generalDAOSpringJdbc" ref="generalDAOSpringJdbc"/>
+        <property name="idGenerator" ref="idGenerator"/>
+    </bean>
+    
+    <bean id="popUpMenu" class="main.java.com.csbl.sms.util.PopUpMenu"/>
+    	 
+    <bean id="subjectChoiceManager" class="main.java.com.csbl.sms.manager.impl.SubjectChoiceManagerImpl">
+    	<property name="generalDAOSpringJdbc" ref="generalDAOSpringJdbc"/>
+        <property name="idGenerator" ref="idGenerator"/>
+    </bean>     
+    
+    <bean id="examRegistrationManager" class="main.java.com.csbl.sms.manager.impl.ExamRegistrationManagerImpl">
+    	<property name="generalDAOSpringJdbc" ref="generalDAOSpringJdbc"/>
+        <property name="idGenerator" ref="idGenerator"/>
+    </bean>  
+    
+    <bean id="markEntryManager" class="main.java.com.csbl.sms.manager.impl.MarkEntryManagerImpl">
+    	<property name="generalDAOSpringJdbc" ref="generalDAOSpringJdbc"/>
+        <property name="idGenerator" ref="idGenerator"/>
+    </bean>
+    
+    <bean id="resultManager" class="main.java.com.csbl.sms.manager.impl.ResultManagerImpl">
+    	<property name="generalDAOSpringJdbc" ref="generalDAOSpringJdbc"/>
+        <property name="idGenerator" ref="idGenerator"/>
+    </bean>
+    
+    <bean id="yearChangeManager" class="main.java.com.csbl.sms.manager.impl.YearChangeManagerImpl">
+    	<property name="generalDAOSpringJdbc" ref="generalDAOSpringJdbc"/>
+        <property name="idGenerator" ref="idGenerator"/>
+    </bean>
+    
+    <bean id="paymentManager" class="main.java.com.csbl.sms.manager.impl.PaymentManagerImpl">
+    	<property name="generalDAOSpringJdbc" ref="generalDAOSpringJdbc"/>
+        <property name="idGenerator" ref="idGenerator"/>
+    </bean>
+    
+    <bean id="expenseManager" class="main.java.com.csbl.sms.manager.impl.ExpenseManagerImpl">
+    	<property name="generalDAOSpringJdbc" ref="generalDAOSpringJdbc"/>
+        <property name="idGenerator" ref="idGenerator"/>
+    </bean>
+
+    <bean id="springJdbcDao" class="com.app.dal.spring.dao.impl.SpringJdbcDaoImpl">
+        <property name="dataSource"                 ref="dataSource" />
+    </bean>
+    
+    <bean id="transactionManager" class="main.java.com.csbl.sms.manager.impl.TransactionManagerImpl">
+    	<property name="springJdbcDao" ref="springJdbcDao"/>
+        <property name="idGenerator" ref="idGenerator"/>
+    </bean>
+    
+</beans>
